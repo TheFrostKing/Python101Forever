@@ -7,7 +7,6 @@ def char_histogram(string):
 
 
 
-
 tests = [
     ("", {}),
     ("    ", {" ": 4}),
