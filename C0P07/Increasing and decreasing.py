@@ -7,14 +7,35 @@ class Monotonicity(Enum):
  
 
 def increasing_or_decreasing(ns):
-    for x in ns:
-        if x > x+1:
-            return Monotonicity.DECREASING
+    length = len(ns)
+
+    if length <= 1:
+        return Monotonicity.NONE
+
+    increasing = True
+    decreasing = True
+
+    for index in range(length - 1):
+
+        a = ns[index]
+        b = ns[index + 1]
+    
+        increasing = increasing and a < b
+        decreasing = decreasing and a > b 
 
 
+    if decreasing:
 
+        return Monotonicity.DECREASING
 
-tests = [
+    if increasing:
+
+        return Monotonicity.INCREASING
+
+    else:
+        return Monotonicity.NONE
+
+tests = [   
     ([1,  2, 3, 4, 5], Monotonicity.INCREASING),
     ([5,  6, -10], Monotonicity.NONE),
     ([1,  1, 1, 1], Monotonicity.NONE),
@@ -31,5 +52,4 @@ tests = [
 
 for ns, expected in tests:
     result = increasing_or_decreasing(ns)
-
     print(result == expected)
