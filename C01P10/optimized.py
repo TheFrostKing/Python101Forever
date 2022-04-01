@@ -13,7 +13,7 @@ def build_cache():
     n = 99999
 
     for n in range(10, n+1):
-        result[n] = is_paledrome(n)
+        result[n] = is_palindrome(n)
 
     return result
 
